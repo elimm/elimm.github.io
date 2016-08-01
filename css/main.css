@@ -1,8 +1,35 @@
+body {
+	margin: 0;
+}
+
+.wrapper {
+	background-color: #20202f;
+}
+
+.container {
+	background-color: #dbdbea;
+	width: 80%;
+	margin: auto;
+}
+
+main {
+	padding: 10px;
+}
+
+footer {
+	background-color: #73dcff;
+	padding: 10px;
+}
+
 h1 {
-	font: 24px/2 600 Arial, Verdana, sans-serif;
-	color: #575748;
+	font: 600 24px/2 Arial, Verdana, sans-serif;
 	text-align: center;
 	background-color: #a8a8b7;
-	background-image: linear-gradient(180deg, #a8a8b7, #424251);
 	text-shadow: 0 0 10px #fff;
+	margin: 0;
+}
+
+p {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 13px;
 }
