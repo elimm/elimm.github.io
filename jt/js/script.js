@@ -176,14 +176,66 @@
 		//this.prev = prev;
 		//this.next = next;
 	}
+	
+	function Scroller(options) {
+		if (!(this instanceof Scroller)) {
+			return new Scroller(options);
+		}
+		
+		var
+			STEP = options.step || 15,
+			DELAY = options.delay || 5,
+			topBtn = $$(".to-top")[0] || d.createElement("button"),
+			t = null;
 
-	if (d.body.classList.contains("home")) {
-		d.addEventListener("DOMContentLoaded", function () {
+		topBtn.title = options.title || "Scroll to top";
+		topBtn.className = topBtn.id = "to-top";
 
+		function getScroll() {
+			return w.pageYOffset || d.documentElement.scrollTop;
+		}
+
+		function scroll() {
+			if (!getScroll() || t) {
+				return;
+			}
+			t = setInterval(function () {
+				if (getScroll() < STEP) {
+					w.scrollTo(w.pageXOffset, 0);
+					clearInterval(t);
+					t = null;
+				}
+				w.scrollBy(w.pageXOffset, -STEP);
+			}, DELAY);
+		}
+
+		function showBtn() {
+			topBtn.classList.add("to-top-active");
+		}
+
+		function hideBtn() {
+			topBtn.classList.remove("to-top-active");
+		}
+
+		topBtn.addEventListener("click", scroll);
+
+		w.addEventListener("scroll", function () {
+			getScroll() > 100 ? showBtn() : hideBtn();
+		});
+
+		d.body.appendChild(topBtn);
+	}
+	
+	function init() {
+		if (d.body.classList.contains("home")) {
 			var
 				slider = Slider({element: $$(".slider-holder")[0]});
-
 			slider.init();
-		});
+		}
+		var
+			upBtn = Scroller({step: 35, delay: 10});
 	}
+	
+	d.readyState == "loading" ? d.addEventListener("DOMContentLoaded", init) : init();
+	
 }(window, document));
