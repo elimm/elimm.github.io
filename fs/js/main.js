@@ -1,0 +1,1 @@
+"use strict";!function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:document,t=e.querySelector("#hamburger"),c=e.querySelector(".nav__wrap");t.onclick=function(){t.classList.toggle("hamburger_active"),t.title="Menu"===t.title?"Close Menu":"Menu",c.classList.toggle("nav__wrap_active")}}();
